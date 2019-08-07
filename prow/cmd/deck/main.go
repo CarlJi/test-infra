@@ -923,6 +923,7 @@ lensesLoop:
 	}
 
 	lensIndexes, ls := sg.Lenses(lensIndexes)
+	logrus.Debugf("matched lenses, ls:%#v, lensCache:%#v", ls, lensCache)
 
 	jobHistLink := ""
 	jobPath, err := sg.JobPath(src)

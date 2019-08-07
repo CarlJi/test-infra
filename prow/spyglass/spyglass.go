@@ -192,7 +192,7 @@ func (s *Spyglass) JobPath(src string) (string, error) {
 	}
 	split := strings.Split(key, "/")
 	switch keyType {
-	case gcsKeyType:
+	case gcsKeyType, qiniuKeyType:
 		if len(split) < 4 {
 			return "", fmt.Errorf("invalid key %s: expected <bucket-name>/<log-type>/.../<job-name>/<build-id>", key)
 		}

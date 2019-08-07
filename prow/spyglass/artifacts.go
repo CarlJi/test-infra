@@ -60,7 +60,10 @@ func (s *Spyglass) ListArtifacts(src string) ([]string, error) {
 
 	logFound := false
 	for _, name := range artifactNames {
-		if name == "build-log.txt" {
+		// the format of artifact name would be different in different cloud, ex:
+		// qn: pr-logs/pull/qbox_qtest/139/kodo-pull-request-test/1158979452751843328/build-log.txt
+		// gcs: build-log.txt
+		if strings.HasSuffix(name, "build-log.txt") {
 			logFound = true
 			break
 		}
