@@ -76,9 +76,9 @@ func Encode(options Options) (string, error) {
 // AddFlags adds flags to the FlagSet that populate
 // the GCS upload options struct given.
 func (o *Options) AddFlags(fs *flag.FlagSet) {
-	fs.StringVar(&o.Bucket, "bucket", "", "bucket where the artifacts uploaded to")
-	fs.StringVar(&o.AccessKey, "access-key", "", "key to access qiniu bucket")
-	fs.StringVar(&o.SecretKey, "secret-key", "", "secret to access qiniu bucket")
+	fs.StringVar(&o.Bucket, "bucket", os.Getenv("QINIU_BUCKET"), "bucket where the artifacts uploaded to")
+	fs.StringVar(&o.AccessKey, "access-key", os.Getenv("ACCESS_KEY"), "key to access qiniu bucket")
+	fs.StringVar(&o.SecretKey, "secret-key", os.Getenv("SECRET_KEY"), "secret to access qiniu bucket")
 
 	fs.BoolVar(&o.DryRun, "dry-run", false, "do not interact with cloud")
 }
