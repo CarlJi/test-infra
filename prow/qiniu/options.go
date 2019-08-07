@@ -80,7 +80,7 @@ func (o *Options) AddFlags(fs *flag.FlagSet) {
 	fs.StringVar(&o.AccessKey, "access-key", "", "key to access qiniu bucket")
 	fs.StringVar(&o.SecretKey, "secret-key", "", "secret to access qiniu bucket")
 
-	fs.BoolVar(&o.DryRun, "dry-run", true, "do not interact with cloud")
+	fs.BoolVar(&o.DryRun, "dry-run", false, "do not interact with cloud")
 }
 
 // Run will upload files to qiniu as prescribed by
