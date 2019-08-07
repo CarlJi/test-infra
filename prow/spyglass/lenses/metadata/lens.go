@@ -20,6 +20,7 @@ package metadata
 import (
 	"bytes"
 	"encoding/json"
+	"strings"
 	"time"
 
 	"fmt"
@@ -91,12 +92,12 @@ func (lens Lens) Body(artifacts []lenses.Artifact, resourceDir string, data stri
 		if err != nil {
 			logrus.WithError(err).Error("Failed reading from artifact.")
 		}
-		if a.JobPath() == "started.json" {
+		if strings.HasSuffix(a.JobPath(), "started.json") {
 			if err = json.Unmarshal(read, &started); err != nil {
 				logrus.WithError(err).Error("Error unmarshaling started.json")
 			}
 			metadataViewData.StartTime = time.Unix(started.Timestamp, 0)
-		} else if a.JobPath() == "finished.json" {
+		} else if strings.HasSuffix(a.JobPath(), "finished.json") {
 			if err = json.Unmarshal(read, &finished); err != nil {
 				logrus.WithError(err).Error("Error unmarshaling finished.json")
 			}

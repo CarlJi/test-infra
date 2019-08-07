@@ -56,7 +56,7 @@ func (s *Spyglass) ListArtifacts(src string) ([]string, error) {
 		return nil, fmt.Errorf("Unrecognized key type for src: %v", src)
 	}
 
-	logrus.Infof("s.GCSArtifactFetcher.artifacts(gcsKey) return, artifactNames: %v, gcsKey: %s", artifactNames, gcsKey)
+	logrus.Infof("fetched artifactNames: %v", artifactNames)
 
 	logFound := false
 	for _, name := range artifactNames {

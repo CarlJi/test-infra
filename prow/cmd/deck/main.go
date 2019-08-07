@@ -836,6 +836,7 @@ func handlePRHistory(o options, cfg config.Getter, gcsClient *storage.Client) ht
 // Examples:
 // - /view/gcs/kubernetes-jenkins/pr-logs/pull/test-infra/9557/pull-test-infra-verify-gofmt/15688/
 // - /view/prowjob/echo-test/1046875594609922048
+// - /view/qn/carl-prow-artifacts/pr-logs/pull/qbox_qtest/139/kodo-pull-request-test/1158991907947286530
 func handleRequestJobViews(sg *spyglass.Spyglass, cfg config.Getter, o options) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
@@ -1073,6 +1074,7 @@ func handleArtifactView(o options, sg *spyglass.Spyglass, cfg config.Getter) htt
 		}
 		lensName := pathSegments[0]
 		resource := pathSegments[1]
+		logrus.Debugf("lensName:%s, resource:%s", lensName, resource)
 
 		lens, err := lenses.GetLens(lensName)
 		if err != nil {
